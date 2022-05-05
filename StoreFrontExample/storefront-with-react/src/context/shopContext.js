@@ -42,8 +42,8 @@ export class ShopProvider extends Component {
     this.setState({ products });
   };
   fetchProductWithHandle = async (handle) => {
-    const products = await client.product.fetchByHandle(handle);
-    this.setState({ products });
+    const product = await client.product.fetchByHandle(handle);
+    this.setState({ product });
   };
   removeLineItems = async (lineItemIdsToRemove) => {};
   openCart = () => {};
