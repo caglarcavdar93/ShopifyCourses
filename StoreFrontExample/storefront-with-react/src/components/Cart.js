@@ -9,10 +9,16 @@ import {
   DrawerContent,
   DrawerCloseButton,
   Button,
+  Grid,
+  Flex,
+  Image,
+  Text,
+  Link,
 } from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
 
 function Cart() {
-  const { isCartOpen, closeCart, checkout, removeLineItem } =
+  const { isCartOpen, closeCart, checkout, removeLineItems } =
     useContext(ShopContext);
 
   return (
@@ -23,13 +29,35 @@ function Cart() {
           <DrawerCloseButton />
           <DrawerHeader>Your Shopping Cart</DrawerHeader>
 
-          <DrawerBody>This is your cart</DrawerBody>
+          <DrawerBody>
+            {checkout.lineItems &&
+              checkout.lineItems.map((item) => (
+                <Grid templateColumns="repeat(4,1fr)" gap={1} key={item.id}>
+                  <Flex alignItems="center" justifyContent="flex-start">
+                    <CloseIcon
+                      onClick={() => removeLineItems(item.id)}
+                      cursor="pointer"
+                    />
+                  </Flex>
+                  <Flex alignItems="center" justifyContent="flex-start">
+                    <Image src={item.variant.image.src} />
+                  </Flex>
+                  <Flex alignItems="center" justifyContent="flex-start">
+                    <Text>{item.title}</Text>
+                  </Flex>
+                  <Flex alignItems="center" justifyContent="flex-start">
+                    <Text>{item.variant.price}</Text>
+                  </Flex>
+                </Grid>
+              ))}
+          </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={closeCart}>
-              Cancel
+            <Button colorScheme="blue" w="100%">
+              <Link w="100%" href={checkout.webUrl}>
+                Checkout
+              </Link>
             </Button>
-            <Button colorScheme="blue">Checkout</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
