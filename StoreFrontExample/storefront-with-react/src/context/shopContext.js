@@ -12,7 +12,7 @@ export class ShopProvider extends Component {
     product: {},
     products: [],
     checkout: {},
-    isCardOpen: false,
+    isCartOpen: false,
     isMenuOpen: false,
   };
   componentDidMount() {
@@ -46,10 +46,18 @@ export class ShopProvider extends Component {
     this.setState({ product });
   };
   removeLineItems = async (lineItemIdsToRemove) => {};
-  openCart = () => {};
-  closeCart = () => {};
-  closeMenu = () => {};
-  openMenu = () => {};
+  openCart = () => {
+    this.setState({ isCartOpen: true });
+  };
+  closeCart = () => {
+    this.setState({ isCartOpen: false });
+  };
+  closeMenu = () => {
+    this.setState({ isMenuOpen: false });
+  };
+  openMenu = () => {
+    this.setState({ isMenuOpen: true });
+  };
 
   render() {
     return (
