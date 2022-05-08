@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import React, { useContext, useEffect } from "react";
 import { ShopContext } from "../context/shopContext";
 import { Box, Grid, Image, Text } from "@chakra-ui/react";
+import Hero from "../components/Hero";
 function Home() {
   const { fetchAllProducts, products } = useContext(ShopContext);
   useEffect(() => {
@@ -12,6 +13,7 @@ function Home() {
 
   return (
     <Box>
+      <Hero />
       <Grid templateColumns="repeat(3,1fr)">
         {products.map((product) => {
           return (
