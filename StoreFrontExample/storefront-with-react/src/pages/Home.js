@@ -4,6 +4,7 @@ import { ShopContext } from "../context/shopContext";
 import { Box, Grid, Image, Text } from "@chakra-ui/react";
 import Hero from "../components/Hero";
 import ImageWithText from "../components/ImageWithText";
+import RichText from "../components/RichText";
 function Home() {
   const { fetchAllProducts, products } = useContext(ShopContext);
   useEffect(() => {
@@ -15,6 +16,10 @@ function Home() {
   return (
     <Box>
       <Hero />
+      <RichText
+        heading="The relaxation you’ve been waiting for."
+        text="Our Bath bombs guarantee a fun, relaxing, and colorful night."
+      />
       <Grid templateColumns="repeat(3,1fr)">
         {products.map((product) => {
           return (
